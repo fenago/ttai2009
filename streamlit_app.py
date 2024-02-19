@@ -110,8 +110,10 @@ def create_model_data_table():
     }
     return pd.DataFrame(model_data)
 
-df_models = create_model_data_table()
-st.table(df_models)
+# Code to display the model data table within an expander
+with st.expander("Model Information"):
+    df_models = create_model_data_table()
+    st.table(df_models)
 
 # Allow users to select the model
 model_options = list(df_models["MODEL"])
