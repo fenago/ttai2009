@@ -15,6 +15,7 @@ openai_api_key = st.sidebar.text_input('OpenAI API Key')
 client = OpenAI(api_key=openai_api_key)
 
 # Allow users to set parameters for the model
+@st.cache
 with st.sidebar:
     st.write("Set Model Parameters")
     temperature = st.slider("Temperature", 0.0, 2.0, 1.0)
