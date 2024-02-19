@@ -114,6 +114,50 @@ def create_model_data_table():
 with st.expander("Model Information"):
     df_models = create_model_data_table()
     st.table(df_models)
+# ... your existing imports and setup code ...
+
+# Tab 1: Chat interface
+with tab1:
+    # Data policy and model endpoint compatibility expander
+    with st.expander("OpenAI API Data Usage Policy"):
+        st.markdown("""
+        **How we use your data**
+
+        Your data is your data.
+
+        As of March 1, 2023, data sent to the OpenAI API will not be used to train or improve OpenAI models (unless you explicitly opt in). One advantage to opting in is that the models may get better at your use case over time.
+
+        To help identify abuse, API data may be retained for up to 30 days, after which it will be deleted (unless otherwise required by law). For trusted customers with sensitive applications, zero data retention may be available. With zero data retention, request and response bodies are not persisted to any logging mechanism and exist only in memory in order to serve the request.
+
+        Note that this data policy does not apply to OpenAI's non-API consumer services like ChatGPT or DALL·E Labs.
+
+        **Default usage policies by endpoint**
+
+        | ENDPOINT | DATA USED FOR TRAINING | DEFAULT RETENTION | ELIGIBLE FOR ZERO RETENTION |
+        | --- | --- | --- | --- |
+        | /v1/chat/completions | No | 30 days | Yes, except image inputs |
+        | /v1/files | No | Until deleted by customer | No |
+        | ... | ... | ... | ... |
+        | /v1/completions | No | 30 days | Yes |
+        * Image inputs via the gpt-4-vision-preview model are not eligible for zero retention.
+
+        * For the Assistants API, we are still evaluating the default retention period during the Beta. We expect that the default retention period will be stable after the end of the Beta.
+
+        **Model endpoint compatibility**
+
+        | ENDPOINT | LATEST MODELS |
+        | --- | --- |
+        | /v1/assistants | All models except gpt-3.5-turbo-0301 supported. |
+        | ... | ... |
+        This list excludes all of our deprecated models.
+
+        For details, see our API data usage policies. To learn more about zero retention, get in touch with our sales team.
+        """, unsafe_allow_html=True)
+
+    # Display previous messages and input box for new messages
+    # ... your existing code for displaying messages and input box ...
+
+# ... rest of your code ...
 
 # Allow users to select the model
 model_options = list(df_models["MODEL"])
