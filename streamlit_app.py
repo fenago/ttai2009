@@ -110,9 +110,18 @@ def create_model_data_table():
     }
     return pd.DataFrame(model_data)
 
-# Display the model data table
-df_models = create_model_data_table()
-st.table(df_models)
+# Create tabs
+tab1, tab2 = st.tabs(["Chat", "Model Information"])
+
+# Tab 1: Chat interface
+with tab1:
+    # Your chat interface code...
+
+# Tab 2: Model information table
+with tab2:
+    # Display the model data table
+    df_models = create_model_data_table()
+    st.table(df_models)
 
 # Allow users to select the model
 model_options = list(df_models["MODEL"])
