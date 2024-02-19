@@ -3,3 +3,6 @@ openai
 pandas
 pytube
 git+https://github.com/openai/whisper.git
+torch>=1.10
+torchvision
+torchaudio
