@@ -3,3 +3,4 @@ openai
 pandas
 pytube
 openai-whisper
+torch
