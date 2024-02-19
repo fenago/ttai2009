@@ -5,7 +5,7 @@ pytube
 openai-whisper
 numba
 numpy
-torch
+torchvision
 tqdm
 more-itertools
 tiktoken
