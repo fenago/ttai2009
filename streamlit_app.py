@@ -17,7 +17,7 @@ client = OpenAI(api_key=openai_api_key)
 # Allow users to set parameters for the model
 with st.sidebar:
     st.write("Set Model Parameters")
-    temperature = st.slider("Temperature", 0.0, 1.0, 0.5)
+    temperature = st.slider("Temperature", 0.0, 2.0, 1.0)
     max_tokens = st.slider("Max Tokens", 1, 500, 256)
     top_p = st.slider("Top P", 0.0, 1.0, 1.0)
     frequency_penalty = st.slider("Frequency Penalty", 0.0, 2.0, 0.0)
@@ -46,6 +46,11 @@ if prompt := st.chat_input("What is up?"):
                 {"role": m["role"], "content": m["content"]}
                 for m in st.session_state.messages
             ],
+            temperature=temperature,
+            max_tokens=max_tokens,
+            top_p=top_p,
+            frequency_penalty=frequency_penalty,
+            presence_penalty=presence_penalty,
             stream=True,
         )
         response = st.write_stream(stream)
