@@ -1,4 +1,4 @@
 streamlit
 openai
 pandas
-audio-recorder-streamlit
+git+https://github.com/openai/whisper.git
