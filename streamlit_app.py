@@ -11,6 +11,13 @@ st.image("https://lwfiles.mycourse.app/65a6a0bb6e5c564383a8b347-public/4ef4ee108
 # Get OpenAI API key
 openai_api_key = st.sidebar.text_input('OpenAI API Key')
 
+# Check if the OpenAI API key is valid
+if not openai_api_key.startswith('sk-'):
+    st.warning('Please enter your OpenAI API key!', icon='⚠️')
+else:
+    # Initialize the OpenAI client with the valid API key
+    client = OpenAI(api_key=openai_api_key)
+
 # Initialize the OpenAI client
 client = OpenAI(api_key=openai_api_key)
 
