@@ -9,9 +9,6 @@ st.image("https://lwfiles.mycourse.app/65a6a0bb6e5c564383a8b347-public/4ef4ee108
 # Sidebar for OpenAI API Key
 openai_api_key = st.sidebar.text_input('OpenAI API Key')
 
-# Assuming 'audio_recorder_streamlit' is a valid package or module in your environment
-from audio_recorder_streamlit import audio_recorder
-
 def transcribe(audio_file):
     transcript = openai.Audio.transcribe("whisper-1", audio_file)
     return transcript
@@ -30,30 +27,24 @@ def transcribe_audio(file_path):
 
 def main():
     st.title("Whisper Transcription")
-    tab1, tab2 = st.tabs(["Record Audio", "Upload Audio"])
 
-    with tab1:
-        audio_bytes = audio_recorder()
-        if audio_bytes:
-            st.audio(audio_bytes, format="audio/wav")
-            audio_file_name = save_audio_file(audio_bytes, "wav")
+    # Upload Audio tab
+    audio_file = st.file_uploader("Upload Audio", type=["mp3", "mp4", "wav", "m4a"])
+    if audio_file:
+        file_extension = audio_file.type.split('/')[1]
+        audio_file_name = save_audio_file(audio_file.read(), file_extension)
 
-    with tab2:
-        audio_file = st.file_uploader("Upload Audio", type=["mp3", "mp4", "wav", "m4a"])
-        if audio_file:
-            file_extension = audio_file.type.split('/')[1]
-            audio_file_name = save_audio_file(audio_file.read(), file_extension)
+        if st.button("Transcribe"):
+            transcript_text = transcribe_audio(audio_file_name)
+            st.header("Transcript")
+            st.write(transcript_text)
 
-    if st.button("Transcribe"):
-        transcript_text = transcribe_audio(audio_file_name)
-        st.header("Transcript")
-        st.write(transcript_text)
+            with open("transcript.txt", "w") as f:
+                f.write(transcript_text)
 
-        with open("transcript.txt", "w") as f:
-            f.write(transcript_text)
-
-        st.download_button("Download Transcript", transcript_text, file_name="transcript.txt")
+            st.download_button("Download Transcript", transcript_text, file_name="transcript.txt")
 
 if __name__ == "__main__":
     main()
+
 
