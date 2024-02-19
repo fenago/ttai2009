@@ -1,4 +1,3 @@
 streamlit
 openai
 pandas
-git+https://github.com/openai/whisper.git
