@@ -2,6 +2,7 @@ import os
 import datetime
 import openai
 import streamlit as st
+import whisper
 
 # Display the image at the top of the page
 st.image("https://lwfiles.mycourse.app/65a6a0bb6e5c564383a8b347-public/4ef4ee108068d6f94365c6d2360b3a66.png")
@@ -9,9 +10,17 @@ st.image("https://lwfiles.mycourse.app/65a6a0bb6e5c564383a8b347-public/4ef4ee108
 # Sidebar for OpenAI API Key
 openai_api_key = st.sidebar.text_input('OpenAI API Key')
 
-def transcribe(audio_file):
-    transcript = openai.Audio.transcribe("whisper-1", audio_file)
-    return transcript
+def transcribe_audio(file_path, model_type="base"):
+    """
+    Transcribe the audio file using Whisper.
+
+    :param file_path: Path to the audio file.
+    :param model_type: Type of Whisper model to use.
+    :return: Transcribed text.
+    """
+    model = whisper.load_model(model_type)
+    result = model.transcribe(file_path)
+    return result["text"]
 
 def save_audio_file(audio_bytes, file_extension):
     timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -20,22 +29,18 @@ def save_audio_file(audio_bytes, file_extension):
         f.write(audio_bytes)
     return file_name
 
-def transcribe_audio(file_path):
-    with open(file_path, "rb") as audio_file:
-        transcript = transcribe(audio_file)
-    return transcript["text"]
-
 def main():
     st.title("Whisper Transcription")
 
-    # Upload Audio tab
     audio_file = st.file_uploader("Upload Audio", type=["mp3", "mp4", "wav", "m4a"])
+    model_type = st.selectbox("Choose Whisper Model", ["tiny", "base", "small", "medium", "large"], index=1)
+
     if audio_file:
         file_extension = audio_file.type.split('/')[1]
         audio_file_name = save_audio_file(audio_file.read(), file_extension)
 
         if st.button("Transcribe"):
-            transcript_text = transcribe_audio(audio_file_name)
+            transcript_text = transcribe_audio(audio_file_name, model_type)
             st.header("Transcript")
             st.write(transcript_text)
 
@@ -46,5 +51,4 @@ def main():
 
 if __name__ == "__main__":
     main()
-
 
