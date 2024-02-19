@@ -14,6 +14,15 @@ openai_api_key = st.sidebar.text_input('OpenAI API Key')
 # Initialize the OpenAI client
 client = OpenAI(api_key=openai_api_key)
 
+# Allow users to set parameters for the model
+with st.sidebar:
+    st.write("Set Model Parameters")
+    temperature = st.slider("Temperature", 0.0, 1.0, 0.5)
+    max_tokens = st.slider("Max Tokens", 1, 500, 256)
+    top_p = st.slider("Top P", 0.0, 1.0, 1.0)
+    frequency_penalty = st.slider("Frequency Penalty", 0.0, 2.0, 0.0)
+    presence_penalty = st.slider("Presence Penalty", 0.0, 2.0, 0.0)
+
 # Initialize session state variables if they don't exist
 if "messages" not in st.session_state:
     st.session_state.messages = []
