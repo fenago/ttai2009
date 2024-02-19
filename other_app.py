@@ -3,6 +3,7 @@ import openai
 from PIL import Image
 import requests
 from io import BytesIO
+import base64
 
 # Function to get image URL from uploaded file
 def get_image_url(image):
