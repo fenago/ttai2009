@@ -115,7 +115,14 @@ st.table(df_models)
 
 # Allow users to select the model
 model_options = list(df_models["MODEL"])
-selected_model = st.sidebar.radio("Select the OpenAI model", model_options)
+# Find the index of 'gpt-3.5-turbo' in the model options list
+default_index = model_options.index('gpt-3.5-turbo') if 'gpt-3.5-turbo' in model_options else 0
+selected_model = st.sidebar.radio("Select the OpenAI model", model_options, index=default_index)
+
+
+# Allow users to select the model
+# model_options = list(df_models["MODEL"])
+# selected_model = st.sidebar.radio("Select the OpenAI model", model_options)
 
 # Update the model based on user selection
 st.session_state["openai_model"] = selected_model
