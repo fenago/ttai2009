@@ -6,7 +6,7 @@ import pandas as pd
 st.title("Trivera Tech ChatGPT")
 
 # Display the image at the top of the page
-st.image("https://lwfiles.mycourse.app/65a6a0bb6e5c564383a8b347-public/4ef4ee108068d6f94365c6d2360b3a66.png")
+st.image("https://lwfiles.mycourse.app/65a6a0bb6e5c564383a8b347-public/81791ed30dbcd226feec79d58591be68.png")
 # Link to Trivera Tech website
 st.markdown("For more information, visit [Trivera Tech](https://www.triveratech.com).")
 # Get OpenAI API key
