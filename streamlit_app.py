@@ -3,14 +3,14 @@ from openai import OpenAI
 import pandas as pd
 
 # Set up the title of the app
-st.title("Miami Dade College ChatGPT")
+st.title("Learning Voyage ChatGPT")
 
 # Display the image at the top of the page
-# st.image("https://lwfiles.mycourse.app/65a6a0bb6e5c564383a8b347-public/81791ed30dbcd226feec79d58591be68.png")
-st.image("https://reddotmiami.com/wp-content/uploads/bfi_thumb/rdm17-sponsors-feature_miami-dade-college-ni0a0heylglji1208ljp6e0q3d88qq8jbo2h48yk4w.gif")
+st.image("https://lwfiles.mycourse.app/65a6a0bb6e5c564383a8b347-public/81791ed30dbcd226feec79d58591be68.png")
+# st.image("https://reddotmiami.com/wp-content/uploads/bfi_thumb/rdm17-sponsors-feature_miami-dade-college-ni0a0heylglji1208ljp6e0q3d88qq8jbo2h48yk4w.gif")
 # Link to Trivera Tech website
-# st.markdown("For more information, visit [Trivera Tech](https://www.triveratech.com).")
-st.markdown("For more information, visit [MDC](https://www.mdc.edu).")
+st.markdown("For more information, visit [Trivera Tech](https://www.triveratech.com).")
+# st.markdown("For more information, visit [MDC](https://www.mdc.edu).")
 # st.write("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")
 
 
