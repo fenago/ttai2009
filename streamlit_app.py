@@ -11,7 +11,7 @@ st.image("https://reddotmiami.com/wp-content/uploads/bfi_thumb/rdm17-sponsors-fe
 # Link to Trivera Tech website
 # st.markdown("For more information, visit [Trivera Tech](https://www.triveratech.com).")
 st.markdown("For more information, visit [MDC](https://www.mdc.edu).")
-st.write("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")
+# st.write("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")
 
 
 # Get OpenAI API key
